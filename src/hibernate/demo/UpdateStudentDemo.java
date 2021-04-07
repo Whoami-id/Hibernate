@@ -18,18 +18,24 @@ public class UpdateStudentDemo {
 		try {
 			session.beginTransaction();
 			
-//		int studentId = 1;
-//		Student student = session.get(Student.class, studentId);
+		int studentId = 1;
+		Student student = session.get(Student.class, studentId);
 		
-		//delete student
-//		session.delete(student);
-		
-		//delete student id=2
-		session.createQuery("delete from Student where id=2").executeUpdate();
-		
+		student.setFirstName("scooby");
 		
 			// commit the transaction
 			session.getTransaction().commit();
+			
+			// new code
+			session = factory.getCurrentSession();
+			session.beginTransaction();
+			
+			//update email for all 
+			session.createQuery("update Student set email='foo@gmail.com'").executeUpdate();
+			
+			session.getTransaction().commit();
+			
+			
 		} finally {
 			factory.close();
 		}
