@@ -1,3 +1,5 @@
 /com/
 /hibernate.cfg.xml
 /hibernate/
+/one/
+/eager/
